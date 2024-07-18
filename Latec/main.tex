@@ -1,0 +1,146 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\title{Report DEVELOPMENT OF RELIABLE, SAFE, AND SECURE SOFTWARE}
+\author{Andrea Ciccarello}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This report details the work I have done on the Isolette project
+\end{abstract}
+
+\tableofcontents
+
+\section{Isolette Control System Requirements}
+
+I woked with the team in order to write every requirements related to the CLT unit in the project,
+due to the nature of the ctl requirements we had to collaborate with every team in otder to have a clear
+separation of each unit in the project.
+Each requirement has been written in strict docs format and has been reviewed by the team.
+
+The requirements are divided in Hith Level Requirements (HLR) and Low Level Requirements (LLR),
+each LLR must have one or more HLR paret and each HLR must have one or more LLR child.
+CLT has been build as a state machine, main states are: CTL\_INIT, CTL\_INPUT, CTL\_OPERATION, CTL\_ERROR.
+
+In each state the CTL has handle multiple events and check in order to operate in a safe and secure way.
+
+We have defined 19 Low Level Requirements and 4 main High Level Requirements for the CLT unit
+
+\begin{itemize}
+    \item CTL shall control temperature
+    \item CTL shall assess system health
+    \item CTL shall provide notifications and alarms
+    \item CTL shall solicit and respond to user interaction
+\end{itemize}
+
+CTL have to interact with every unit of the project, handle correctly self test of the system, report errors to the UI unit.
+
+\section{Assumptions}
+
+I helped writing about Assumptions related to nurses. 
+This is the current list available in the project paper (Isolette\_nurse\_assumptions.csv):
+
+\begin{itemize}
+    \item Nurses are highly specialized professionals, trained to provide expert care to Infants in intensive care.
+    \item Nurses can be trained to use technical devices, including those that are controlled by computers with ordinary user interface elements.
+    \item Nurses are not visually or hearing impaired and can interact with ordinary user interface elements such as buttons and keyboards.
+    \item Nurses can move Infants as needed.
+\end{itemize}
+
+For each assumptions I alswo wrote about the reasons why we have to consider them revelant for the project.
+
+
+\section{Program Documentation and Doxygen}
+
+I worked on the Doxygen and program documentation, ensuring the correctness of the current README instructions for the generation of the documentation.
+I studied how to write Doxygen documentation and provided assistance in using special commands properly. 
+I collaborated with the CMAKE team to enable the use of make for generating documentation for Test and System source code; previously, this was only possible with a script. 
+I contributed to the current Doxygen guidelines, making multiple commits to ensure the project is up to date with the latest standards.
+I delated usesless command like @breaf and @par that were misused in the project.
+I worked with the Tracability man to ensure a common guidelines for the documentation of the project.
+
+\section{Hardware Abstraction Layer: Isolette and Room Air}
+
+I reimplemented the Hardware Abstraction Layer source code for Isolette Air and Room Air. I addressed issues identified in the mutation analysis and collaborated with the Heater team to establish a common method for handling temperature and heat exchange between heating surfaces and the air.
+Isolette and Room air Hardware Abstraction Layer now have 100\% mull Mutation score and MCDC coverage.
+
+\section{Comparison with FAA: Requirements and Study}
+
+I worked with the FAA analysis team to compare the Isolette project with the FAA project report developed by the US government. This analysis was presented to the entire team.
+
+My responsibilities included studying:
+
+\begin{itemize}
+    \item The project description of "External Entities" and their specifications:
+    \begin{itemize}
+        \item Temperature Sensor
+        \item Heat Source
+        \item Operator Interface
+    \end{itemize}
+    \item Safety requirements, such as prolonged exposure of infants to unsafe heat or cold, classified as a catastrophic event:
+    \begin{itemize}
+        \item Thermostat System Function
+        \item Regulate Temperature Function
+    \end{itemize}
+\end{itemize}
+
+I also had to write a report about requirements of the FAA project inside a chapter of the paper.
+
+\section{MISRA C:2012 Compliance}
+
+We started to work on the MISRA C:2012 compliance of the project with the study of the MISRA C:2012 guidelines.
+Every MISRA C guideline is classified as either being a “rule” or a “directive”.
+A directive is a guideline for which it is not possible to provide the full description necessary to perform a check for compliance.
+A rule is a guideline for which a complete description of the requirement has been provided. 
+It should be possible to check that source code complies with a rule without needing any other information.
+
+Guidelines can be classified as:
+\begin{itemize}
+    \item Mandatory: A guideline that must be followed.
+    \item Required: A guideline that should be followed.
+    \item Advisory: A guideline that is only raccomanded (can't just ignore them).
+\end{itemize}
+
+For each rule we have a breaf description, a category, the version which the rule applies to, the scope of the analysis (like Single Translation unit), 
+an Amplification (not Mandatory) an Rationale where is explained why the rule is important, a list of examples (not mandatory).
+
+For this project we use Eclair \cite{Eclair} as a tool static analysis tool to check the MISRA C:2012 compliance of the project.
+
+\section{Logging}
+
+I studied the current logging system handled by the Boost library available in the project. 
+I wrote a tutorial on this topic, included in an appendix of the project documentation. Additionally, I provided a brief description of the current logging guidelines and assisted in applying them to the project.
+I inpruved the current logging initializzation system in the main.cc file with a better handling of the log file and when we have to set the 
+severity level of the log system.
+
+
+\begin{thebibliography}{9}
+    \bibitem{latexcompanion} 
+    Leslie Lamport.
+    \textit{LaTeX: A Document Preparation System}.
+    Addison Wesley, 2nd edition, 1994.
+
+    \bibitem{Eclair}
+    Bugseng Website
+    https://www.bugseng.com/eclair/eclairit
+
+    \bibitem{Doxygen}
+    Doxygen Manual
+    https://www.doxygen.nl/manual/index.html
+
+\end{thebibliography}
+
+\end{document}

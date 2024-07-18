@@ -1,0 +1,16 @@
+## States 
+
+The isolette is like a state machine. It has different states and transitions between them.
+
+Self checking state (memory, display, etc) - > 
+setting up state with 4 temperatures (minumu, maximun, minumum allarm, maximux allarm) by nurses -> 
+wating for pressing "start button" -> 
+normal mode operation -> ? 
+degrade mode operation
+
+
+Degraded mode operation:
+When 1 thermometer is broken
+When 1 heating surface is broken
+
+We have 3 thermometer and 2 heating surfaces in total.

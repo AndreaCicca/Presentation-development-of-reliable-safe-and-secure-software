@@ -1,0 +1,75 @@
+This is a preliminary report about the use of the boost library for logging in the Isolette project.
+I will analyze how to project handle logging and how the boost library is used to implement it.
+ 
+The logging system is instantiated within the file main.cc through the function init_logging(),
+where the output pattern is chosen and the name of the file where the logs will be saved.
+Additionally, a filter will be added to check the severity level of the logs.
+ 
+-> The chosen pattern for the logging system of the project is "[%Time%] [%Tick%] [%Severity%] %Message%".
+ 
+The severity levels that can be used in the Boost library are trace,debug,info,warning,error,fatal.
+The minimum project severity level at the moment is "info".
+ 
+Members of the team will be able to use the logging system including the header file logging.h.
+Inside logging.h, there is a macro responsible for creating a template for logging-related functions.
+ 
+|   #define LOG(severity, format, ...) \
+|       log_##severity##_printf((format), ##__VA_ARGS__)
+ 
+For example, if one member of the team wants to log a message with severity "fatal", he could use:
+ 
+|   #include "logging.h"                                                       
+|   LOG(fatal, "Some fatal error occurred with a number: %d", 42); // Example.
+ 
+The logging system allows passing multiple parameters, which will be correctly formatted.
+ 
+The log level ca be set within Code/Test/Parser/predefined_functions.cc via set_log_level(...) function, following what is specified.
+in the scenario (.scn) files.
+ 
+Every log file starts with:
+ 
+|   [1970-01-01 00:00:00.000] [] [info] logging started
+|   [2023-06-20 11:00:00.000] [] [info] set_date_time(2023-06-20 11:00:00)
+|   [2023-06-20 11:00:00.000] [] [info] set_log_level(info)
+ 
+ 
+In the following section I present a brief analysis of one of the implementations of the logging template
+to see how it's handled within the logging.cc file.
+ 
+|    // trace level                                                                                                    
+|    void log_trace_printf(const char* p_format, ...)                                                                  
+|    {                                                                                                                 
+|      // Declare a variable argument list                                                                             
+|      va_list args;                                                                                                   
+|                                                                                                                      
+|      // Initialize args to point to the last known element.                                                           
+|      va_start(args, p_format);                                                                                       
+|                                                                                                                      
+|      // Compute the required buffer size for printing (0 and NULL are used not to write in a buffer)                 
+|      size_t length = std::vsnprintf(NULL, 0, p_format, args);                                                        
+|                                                                                                                      
+|      // Clean up the variable argument list.                                                                          
+|      va_end(args);                                                                                                   
+|                                                                                                                      
+|      // Create a vector with size length + 1.                                                                         
+|      // The + 1 ensures there's enough space to accommodate the terminator.                                           
+|      std::vector<char> vec(length + 1U);                                                                             
+|                                                                                                                      
+|      // Initialize args as done previously.                                                                           
+|      va_start(args, p_format);                                                                                       
+|                                                                                                                      
+|      // Write the formatted message into vec                                                                         
+|      std::vsnprintf(&vec[0], length + 1U, p_format, args);                                                           
+|                                                                                                                      
+|      // Clean up the argument list after using it                                                                    
+|      va_end(args);                                                                                                   
+|                                                                                                                      
+|      // macro in the boost library                                                                                   
+|      BOOST_LOG_TRIVIAL(trace) << &vec[0];                                                                            
+|    }                                                                                                                 
+ 
+The string "[1970-01-01 00:00:00.000]", as seen previously, is printed using get_current_time(...) function available in the in the main.cc file,
+which securely invokes the write_to_string(...) function available in Code/Test/Date_Time.cc.
+ 
+The function to update the content of the attributes in the time fields has been implemented in the header file Code/Test/Date_Time_inlines.hh
+and calls maybe_update_struct_tm(). As the name suggests, maybe_update_struct_tm() is a method that ensures not to make unnecessary updates of the current time, to avoid wasting resources.
