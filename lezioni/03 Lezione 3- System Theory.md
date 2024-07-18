@@ -4,34 +4,34 @@ System that has a lot of interactive components, Too complex for complete analys
 The focus is on the system taken as a whole, not on the individual components (The whole is greater than the sum of its parts). We find Emergent properties that arise from complex interactions.
 
 System theory is based on a simple component: A process and a **controller** that obtain feedback from the process and use it to control the process. 
-The controller ensure sagety contraint like power mist never be on when access door is open. [link](https://en.wikipedia.org/wiki/Systems_theory)
+The controller ensure safety constraint like power mist never be on when access door is open. [link](https://en.wikipedia.org/wiki/Systems_theory)
 
-Treating safery as a **control problem**, we don't prevent failures, we enforce safety constraints.
+Treating safety as a **control problem**, we don't prevent failures, we enforce safety constraints.
 
 ## Treating Safety as a Control Problem
 
-A controller contains a Control algoritm and a Process model.
+A controller contains a Control algorithm and a Process model.
 
-Control algoritm: A set of rules that determine the behavior of the controller.
+Control algorithm: A set of rules that determine the behavior of the controller.
 
 Controller -> Control Actions -> Controlled process
 Controlled process -> Feedback -> Controller
 
 Controllers use a process model to determine control actions.
-Controller control actions via controller process and (via actuators) and recive feedback from the Controlled Process (via sensors). The controller can't be sure that the process model is correct, and the controller can't be sure that the sensors are working properly.
+Controller control actions via controller process and (via actuators) and receive feedback from the Controlled Process (via sensors). The controller can't be sure that the process model is correct, and the controller can't be sure that the sensors are working properly.
 
 Software/human related accidents often occur when the process model is incorrect
 
-We can have multiple levels of control module, for example in the Missile Release Mishap there waere 4 levels: Command Authority <-> Pilot <-> Software Controller <-> Aircraft.
+We can have multiple levels of control module, for example in the Missile Release Mishap there were 4 levels: Command Authority <-> Pilot <-> Software Controller <-> Aircraft.
 
 ### Example
 
-Mars Polar lander: Process model was wrong, the computer system belive that the lander had landed, but it wasn't true. A problem in the feedback (the lander wasn't landed).
+Mars Polar lander: Process model was wrong, the computer system believe that the lander had landed, but it wasn't true. A problem in the feedback (the lander wasn't landed).
 
 # STAMP Approach
 
 STAMP: System-Theoretic Accident Model and Processes
-Indentify potentialy unsafe control actions -> Identify why they might be given -> If safe ones provided, then why not followed?
+Identify potentially unsafe control actions -> Identify why they might be given -> If safe ones provided, then why not followed?
 
 A new, more powerful accident/loss causality model based on systems theory, not reliability theory, Defines accidents/losses as a dynamic control problem (vs. a failure problem). Applies to VERY complex systems.
 
@@ -80,7 +80,7 @@ STPA can help anticipate hazardous scenarios caused by:
 - Missing design requirements
 - Interactions between systems
 
-Stemp 1: What is the system and what is the environment? (system boundary)
+Step 1: What is the system and what is the environment? (system boundary)
 Step 2: Model
 Step 3: Behavior to prevent
 Step 4: How could behavior occur feedback loop
@@ -89,10 +89,10 @@ Step 4: How could behavior occur feedback loop
 STPA identify unsafe control actions:
 - Not provided causes hazards ( Controller X shall provide command Y when D)
 - Providing causes hazards (Controller X shall not provide command Y when D)
-- Too early, too late, out of order (Controller X shann provide command Y within F seconds of G)
-- Stopped too soon, applied too long (Controller X shall stop providing command Y whithin H seconds of J)
+- Too early, too late, out of order (Controller X should provide command Y within F seconds of G)
+- Stopped too soon, applied too long (Controller X shall stop providing command Y within H seconds of J)
 
-Hight level safery constraints: Controller X shall not allow A, Controller Shall enforce B.
+Hight level safety constraints: Controller X shall not allow A, Controller Shall enforce B.
 
 Traceability is maintained throughout. 
 
