@@ -26,13 +26,13 @@ This report details the work I have done on the Isolette project
 
 \section{Isolette Control System Requirements}
 
-I woked with the team in order to write every requirements related to the CLT unit in the project,
+I worked with the team in order to write every requirements related to the CLT unit in the project,
 due to the nature of the ctl requirements we had to collaborate with every team in otder to have a clear
 separation of each unit in the project.
 Each requirement has been written in strict docs format and has been reviewed by the team.
 
-The requirements are divided in Hith Level Requirements (HLR) and Low Level Requirements (LLR),
-each LLR must have one or more HLR paret and each HLR must have one or more LLR child.
+The requirements are divided in High Level Requirements (HLR) and Low Level Requirements (LLR),
+each LLR must have one or more HLR parent (Traceability) and each HLR must have one or more LLR child.
 CLT has been build as a state machine, main states are: CTL\_INIT, CTL\_INPUT, CTL\_OPERATION, CTL\_ERROR.
 
 In each state the CTL has handle multiple events and check in order to operate in a safe and secure way.
@@ -60,7 +60,7 @@ This is the current list available in the project paper (Isolette\_nurse\_assump
     \item Nurses can move Infants as needed.
 \end{itemize}
 
-For each assumptions I alswo wrote about the reasons why we have to consider them revelant for the project.
+For each assumptions I alswo wrote about the reasons why we have to consider them relevant for the project.
 
 
 \section{Program Documentation and Doxygen}
@@ -69,8 +69,8 @@ I worked on the Doxygen and program documentation, ensuring the correctness of t
 I studied how to write Doxygen documentation and provided assistance in using special commands properly. 
 I collaborated with the CMAKE team to enable the use of make for generating documentation for Test and System source code; previously, this was only possible with a script. 
 I contributed to the current Doxygen guidelines, making multiple commits to ensure the project is up to date with the latest standards.
-I delated usesless command like @breaf and @par that were misused in the project.
-I worked with the Tracability man to ensure a common guidelines for the documentation of the project.
+I delated useless command like @breaf and @par that were misused in the project.
+I worked with the Traceability man to ensure a common guidelines for the documentation of the project.
 
 \section{Hardware Abstraction Layer: Isolette and Room Air}
 
@@ -111,10 +111,10 @@ Guidelines can be classified as:
 \begin{itemize}
     \item Mandatory: A guideline that must be followed.
     \item Required: A guideline that should be followed.
-    \item Advisory: A guideline that is only raccomanded (can't just ignore them).
+    \item Advisory: A guideline that is only recommended (can't just ignore them).
 \end{itemize}
 
-For each rule we have a breaf description, a category, the version which the rule applies to, the scope of the analysis (like Single Translation unit), 
+For each rule we have a brief description, a category, the version which the rule applies to, the scope of the analysis (like Single Translation unit), 
 an Amplification (not Mandatory) an Rationale where is explained why the rule is important, a list of examples (not mandatory).
 
 For this project we use Eclair \cite{Eclair} as a tool static analysis tool to check the MISRA C:2012 compliance of the project.
@@ -123,7 +123,7 @@ For this project we use Eclair \cite{Eclair} as a tool static analysis tool to c
 
 I studied the current logging system handled by the Boost library available in the project. 
 I wrote a tutorial on this topic, included in an appendix of the project documentation. Additionally, I provided a brief description of the current logging guidelines and assisted in applying them to the project.
-I inpruved the current logging initializzation system in the main.cc file with a better handling of the log file and when we have to set the 
+I improved the current logging initialization system in the main.cc file with a better handling of the log file and when we have to set the 
 severity level of the log system.
 
 
