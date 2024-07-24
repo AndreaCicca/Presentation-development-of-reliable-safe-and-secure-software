@@ -27,7 +27,7 @@ This report details the work I have done on the Isolette project
 \section{Isolette Control System Requirements}
 
 I worked with the team in order to write every requirements related to the CLT unit in the project,
-due to the nature of the ctl requirements we had to collaborate with every team in order to have a clear
+due to the nature of the CRL requirements we had to collaborate with every team in order to have a clear
 separation of each unit in the project.
 Each requirement has been written in strict docs format and has been reviewed by the team.
 
@@ -77,9 +77,9 @@ I worked with the Traceability man to ensure a common guidelines for the documen
 I reimplemented the Hardware Abstraction Layer source code for Isolette Air and Room Air. I addressed issues identified in the mutation analysis and collaborated with the Heater team to establish a common method for handling temperature and heat exchange between heating surfaces and the air.
 Isolette and Room air Hardware Abstraction Layer now have 100\% mull Mutation score and MCDC coverage.
 
-\subsection{Isolette Air}
+\subsection{Isolette Air HAL}
 
-Isolette Air HAS has to interact with the Roome air and indirectly with the heater surface temperature in order to ensure
+Isolette Air HAS has to interact with the Room air and indirectly with the heater surface temperature in order to ensure
 that the heat can be injected in the Isolette and the temperature can be controlled in a safe way.
 
 Fourier law of heat conduction allows to compute the heat transfer rate through the isolette material.
@@ -97,14 +97,14 @@ where:
     \item L is the thickness of the material (m).
 \end{itemize}
 
-\subsection{Room Air}
+\subsection{Room Air HAL}
 
 The implementation of the Room Air is simpler because there is not function that dynamically update it like the Isolette Air.
 The Room Air is always at the same temperature because we have assumed that there is an external system that has this task.
 
 Both HALs have a saturation mechanism, it ensures that the temperature is always in a safe range.
 
-\section{Comparison with FAA: Requirements and Study}
+\section{Comparison with FAA: Requirements and presentation}
 
 I worked with the FAA analysis team to compare the Isolette project with the FAA project report developed by the US government. This analysis was presented to the entire team.
 
@@ -142,7 +142,7 @@ Guidelines can be classified as:
 \end{itemize}
 
 For each rule we have a brief description, a category, the version which the rule applies to, the scope of the analysis (like Single Translation unit), 
-an Amplification (not Mandatory) an Rationale where is explained why the rule is important, a list of examples (not mandatory).
+an Amplification (not mandatory), an Rationale where is explained why the rule is important, a list of examples (not mandatory).
 
 For this project we use Eclair \cite{Eclair} as a tool static analysis tool to check the MISRA C:2012 compliance of the project.
 
@@ -153,6 +153,22 @@ I wrote a tutorial on this topic, included in an appendix of the project documen
 I improved the current logging initialization system in the main.cc file with a better handling of the log file and when we have to set the 
 severity level of the log system.
 
+\subsection{Logging guideline}
+
+I have ensure a simple logging guideline for the project:
+
+\begin{itemize}
+    \item Use the LOG macro to log messages.
+    \item Start each log message with a capital letter.
+    \item End each log message with a period.
+    \item Use the severity levels properly and don't abuse the info level.
+\end{itemize}
+
+\subsection{Logging abuses}
+In the project there was an abuse of the info logging level, this is not a good practice because when debugging in case of an anwanted execution path we have to search for the error in a lot of info logs.
+The project has to prioritize the use of trace and debug logging error with a zero suppression policy.
+
+For example in the Isolette Air HAL every tick the current temperature is logged with the trace level and only every 50 ticks the info level is used.
 
 \begin{thebibliography}{9}
     \bibitem{latexcompanion} 
