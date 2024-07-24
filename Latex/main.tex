@@ -150,7 +150,7 @@ These deviation are implemented via a change in current Eclair configuration tha
 
 \section{Logging}
 
-I studied the current logging system handled by the Boost library available in the project. 
+I studied the current logging system, handled by the C++ Boost library, available in the project. 
 I wrote a tutorial on this topic, included in an appendix of the project documentation. Additionally, I provided a brief description of the current logging guidelines and assisted in applying them to the project.
 I improved the current logging initialization system in the main.cc file with a better handling of the log file and when we have to set the 
 severity level of the log system.
@@ -165,6 +165,8 @@ I have ensure a simple logging guideline for the project:
     \item End each log message with a period.
     \item Use the severity levels properly and don't abuse the info level.
 \end{itemize}
+
+Syntax of the LOG message is checked by a python script that I run locally.
 
 \subsection{Logging abuses}
 In the project there was an abuse of the info logging level, this is not a good practice because when debugging in case of an anwanted execution path we have to search for the error in a lot of info logs.
