@@ -77,6 +77,33 @@ I worked with the Traceability man to ensure a common guidelines for the documen
 I reimplemented the Hardware Abstraction Layer source code for Isolette Air and Room Air. I addressed issues identified in the mutation analysis and collaborated with the Heater team to establish a common method for handling temperature and heat exchange between heating surfaces and the air.
 Isolette and Room air Hardware Abstraction Layer now have 100\% mull Mutation score and MCDC coverage.
 
+\subsection{Isolette Air}
+
+Isolette Air HAS has to interact with the Roome air and indirectly with the heater surface temperature in order to ensure
+that the heat can be injected in the Isolette and the temperature can be controlled in a safe way.
+
+Fourier law of heat conduction allows to compute the heat transfer rate through the isolette material.
+
+\begin{equation}
+q = k A \frac{T_2 - T_1}{L}
+\end{equation}
+
+where:
+\begin{itemize}
+    \item q is the heat transfer rate in watts (W),
+    \item k is the thermal conductivity of the material (\( W/mK \)),
+    \item A is the cross-sectional area of the material (\( m^2 \)),
+    \item T1 and T2 are the temperatures at the ends of the material (K),
+    \item L is the thickness of the material (m).
+\end{itemize}
+
+\subsection{Room Air}
+
+The implementation of the Room Air is simpler because there is not function that dynamically update it like the Isolette Air.
+The Room Air is always at the same temperature because we have assumed that there is an external system that has this task.
+
+Both HALs have a saturation mechanism, it ensures that the temperature is always in a safe range.
+
 \section{Comparison with FAA: Requirements and Study}
 
 I worked with the FAA analysis team to compare the Isolette project with the FAA project report developed by the US government. This analysis was presented to the entire team.
