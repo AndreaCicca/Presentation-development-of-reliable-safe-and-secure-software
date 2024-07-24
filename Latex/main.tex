@@ -132,8 +132,7 @@ List of every requirements of the FAA Isolette project can be found in /Isolette
 We started to work on the MISRA C:2012 compliance of the project with the study of the MISRA C:2012 guidelines.
 Every MISRA C guideline is classified as either being a “rule” or a “directive”.
 A directive is a guideline for which it is not possible to provide the full description necessary to perform a check for compliance.
-A rule is a guideline for which a complete description of the requirement has been provided. 
-It should be possible to check that source code complies with a rule without needing any other information.
+A rule is a guideline for which it should be possible to check that source code complies without needing any other information.
 
 Guidelines can be classified as:
 \begin{itemize}
@@ -144,8 +143,10 @@ Guidelines can be classified as:
 
 For each rule we have a brief description, a category, the version which the rule applies to, the scope of the analysis (like Single Translation unit), 
 an Amplification (not mandatory), an Rationale where is explained why the rule is important, a list of examples (not mandatory).
-
 For this project we use Eclair \cite{Eclair} as a tool static analysis tool to check the MISRA C:2012 compliance of the project.
+
+We provided a list of Project deviations from MISRA-C and C++ guidelines, the full list is available in the dedicated paper chapter.
+These deviation are implemented via a change in current Eclair configuration thanks to Bugseng team.
 
 \section{Logging}
 
