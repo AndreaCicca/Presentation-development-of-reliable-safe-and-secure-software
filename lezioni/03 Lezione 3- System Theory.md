@@ -89,7 +89,7 @@ Step 4: How could behavior occur feedback loop
 STPA identify unsafe control actions:
 - Not provided causes hazards ( Controller X shall provide command Y when D)
 - Providing causes hazards (Controller X shall not provide command Y when D)
-- Too early, too late, out of order (Controller X should provide command Y within F seconds of G)
+- Too early, too late, out of order (Controller X shall provide command Y within F seconds of G)
 - Stopped too soon, applied too long (Controller X shall stop providing command Y within H seconds of J)
 
 Hight level safety constraints: Controller X shall not allow A, Controller Shall enforce B.
